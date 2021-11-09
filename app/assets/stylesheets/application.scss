@@ -1,15 +1,30 @@
 @import 'bootstrap';
 
-#center-container{
+#center-container {
     text-align: center;
     height: 85vh;
     width: 88vw;
-    border: solid 4px white;
+    border: solid 4px grey;
     border-radius: 25px;
     padding: 0 15% 0 15%;
+    display: flex;
 }
 
-$bg:lightblue;
-$textcolor:darkblue;
-$fontsize:24px;
-$textalign:center;
+*{
+    background-color: #D3D3D3;
+    color: #BA8C63;
+    font-family:'Trebuchet MS', 'Aller_Bd';
+}
+
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+}
+
+// $assetPath :app/assets/images;
+body {
+  margin: 0 auto;
+  background-image: url(zaha.jpg);
+  width: 100%; 
+  top: 0;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Home from "./pages/Home"
+import ApartmentIndex from './pages/ApartmentIndex'
 import {
   BrowserRouter as Router,
   Route,
@@ -9,12 +10,32 @@ import {
 } from "react-router-dom"
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      apartments: []
+    }
+  }
+
+  componentDidMount(){
+    this.readApartment()
+  }
+
+  readApartment = () => {
+    fetch("/apartments")
+    .then(response => response.json())
+    .then(payload => this.setState({apartments: payload}))
+    .catch(errors => console.log("index errors:", errors))
+  }
+
   render() {
+    const {apartments} = this.state
     return (
       <Router>
         <Header {...this.props} />
       <Routes>
         <Route exact path="/" element={ <Home /> } />
+        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments} />} />
       </Routes>
       <Footer />
     </Router>
@@ -25,31 +46,5 @@ class App extends Component {
 export default App
 
 
-  //   const {
-  //     logged_in,
-  //     current_user,
-  //     new_user_route,
-  //     sign_in_route,
-  //     sign_out_route
-  //   } = this.props
-  //   return (
-  //     <Router>
-  //       <Header {...this.props} />
-  // <Routes>
-  //   <Route exact path="/" element={ <Home/> } />
-  //   <>
-  //       { logged_in &&
-  //         <div>
-  //           <a href={ sign_out_route }>Sign Out</a>
-  //         </div>
-  //       }
-  //       { !logged_in &&
-  //         <div>
-  //           <a href={ sign_in_route }>Sign In</a>
-  //         </div>
-  //       }
-  //     </>
-  // </Routes>
-  //   </Router>    
-  //   )
+ 
   
