@@ -1,2 +1,0 @@
-class ApartmentIndex < ApplicationRecord
-end
