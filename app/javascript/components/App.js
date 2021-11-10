@@ -24,22 +24,23 @@ class App extends Component {
   readApartment = () => {
     fetch("/apartments")
     .then(response => response.json())
-    .then(payload => this.setState({apartments: payload}))
-    .catch(errors => console.log("index errors:", errors))
+    .then(payload => this.setState({apartments: payload}))  
   }
 
   render() {
     const {apartments} = this.state
+    console.log(apartments)
     return (
       <Router>
         <Header {...this.props} />
       <Routes>
         <Route exact path="/" element={ <Home /> } />
-        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments} />} />
+        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments} />} />   
+        <Route path="/listings" element={<ApartmentIndex apartments={apartments} />} />
       </Routes>
       <Footer />
     </Router>
-    );
+    )
   }
 }
 
